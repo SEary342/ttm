@@ -1,5 +1,5 @@
 # Frontend Build
-FROM node:26-alpine as frontend-builder
+FROM node:26-alpine AS frontend-builder
 
 WORKDIR /frontend
 
@@ -13,9 +13,9 @@ RUN npm run build
 
 # Backend Build
 
-FROM ghcr.io/astral-sh/uv:python:3.14-slim-trixie as backend-builder
+FROM ghcr.io/astral-sh/uv:python3.14-trixie-slim AS backend-builder
 
-WORKDIR /build
+WORKDIR /app
 
 COPY backend/pyproject.toml .
 COPY backend/uv.lock .
@@ -32,8 +32,8 @@ ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app
 
-COPY --from=backend-builder /build /app
-COPY --from=frontend-builder /frontend/dist /app/app/static
+COPY --from=backend-builder /app /app
+COPY --from=frontend-builder /frontend/build/client /frontend/build/client
 
 ENV PATH="/app/.venv/bin:$PATH"
 

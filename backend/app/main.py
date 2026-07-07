@@ -17,7 +17,7 @@ def read_root():
 
 # Path to the frontend build directory
 FRONTEND_BUILD_DIR = (
-    Path(__file__).parent.parent.parent / "frontend" / "build" / "client"
+    Path(__file__).resolve().parent.parent.parent / "frontend" / "build" / "client"
 )
 
 # Serve the static frontend SPA

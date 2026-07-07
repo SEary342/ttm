@@ -8,7 +8,6 @@ import {
 } from "react-router";
 
 import type { Route } from "./+types/root";
-import "./app.css";
 import { CssBaseline } from "@mui/material";
 
 export const links: Route.LinksFunction = () => [
