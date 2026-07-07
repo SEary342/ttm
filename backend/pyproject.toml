@@ -1,0 +1,52 @@
+[project]
+name = "ttm-backend"
+version = "0.0.1"
+description = "The missing tech lead/PM tool for Gitlab"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = ["fastapi[standard]>=0.139.0"]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "pytest-cov>=7.1.0",
+    "ruff>=0.15.20",
+    "taskipy>=1.14.1",
+    "ty>=0.0.56",
+]
+
+# ==============================================================================
+# Tool Configurations
+# ==============================================================================
+
+[tool.ruff]
+target-version = "py314"
+line-length = 88
+src = ["app"]
+exclude = [".git", ".uv", ".venv", "build", "dist"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+ignore = []
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+addopts = "-ra -q --cov=app --cov-report=term-missing"
+testpaths = ["tests"]
+pythonpath = ["app"]
+
+[tool.coverage.run]
+omit = ["tests/*", "**/test_*.py"]
+
+[tool.taskipy.tasks]
+test = "pytest"
+lint = "ruff check . --fix"
+format = "ruff format ."
+typecheck = "ty check ."
+check-all = "task lint && task format && task typecheck && task test"
