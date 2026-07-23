@@ -6,6 +6,9 @@
 
 ---
 
+## 0. Ideation (Not included in the below items)
+- Task listing status page that connects task, assignee, task status indicated, and MR deployment status. Everything here should just be a quick data grab except for deploy status as that could take some interpolation to determine if something A. merged, B. had a publish step or another MR that merged later had a publish, and C. Had a followup MR (rinse and repeat)
+
 ## 1. Vision & Goals
 
 TTM is a leadership-facing tool that gives tech leads and project managers **at-a-glance visibility** into what every team member is working on in a self-hosted GitLab instance. It is explicitly **not** a developer surveillance tool — it exists to help leadership **preemptively identify blockers**, understand team workload, and (eventually) improve sprint planning.
